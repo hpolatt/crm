@@ -1,10 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "F8HhK3iPANA=",
+  "dgSpecHash": "bH//aR4z6rQ=",
   "success": true,
   "projectFilePath": "/Users/huseyinpolat/Projects/CRMMicroservice/Core.Application/Core.Application.csproj",
   "expectedPackageFiles": [
-    "/Users/huseyinpolat/.nuget/packages/fluentvalidation/8.2.2/fluentvalidation.8.2.2.nupkg.sha512",
+    "/Users/huseyinpolat/.nuget/packages/fluentvalidation/11.10.0/fluentvalidation.11.10.0.nupkg.sha512",
+    "/Users/huseyinpolat/.nuget/packages/fluentvalidation.dependencyinjectionextensions/11.10.0/fluentvalidation.dependencyinjectionextensions.11.10.0.nupkg.sha512",
+    "/Users/huseyinpolat/.nuget/packages/mediatr/12.4.1/mediatr.12.4.1.nupkg.sha512",
+    "/Users/huseyinpolat/.nuget/packages/mediatr.contracts/2.0.1/mediatr.contracts.2.0.1.nupkg.sha512",
     "/Users/huseyinpolat/.nuget/packages/microsoft.aspnetcore.http/2.2.2/microsoft.aspnetcore.http.2.2.2.nupkg.sha512",
     "/Users/huseyinpolat/.nuget/packages/microsoft.aspnetcore.http.abstractions/2.2.0/microsoft.aspnetcore.http.abstractions.2.2.0.nupkg.sha512",
     "/Users/huseyinpolat/.nuget/packages/microsoft.aspnetcore.http.features/2.2.0/microsoft.aspnetcore.http.features.2.2.0.nupkg.sha512",
@@ -26,7 +29,6 @@
     "/Users/huseyinpolat/.nuget/packages/sendgrid/9.29.3/sendgrid.9.29.3.nupkg.sha512",
     "/Users/huseyinpolat/.nuget/packages/starkbank-ecdsa/1.3.3/starkbank-ecdsa.1.3.3.nupkg.sha512",
     "/Users/huseyinpolat/.nuget/packages/system.buffers/4.5.0/system.buffers.4.5.0.nupkg.sha512",
-    "/Users/huseyinpolat/.nuget/packages/system.componentmodel.annotations/4.4.1/system.componentmodel.annotations.4.4.1.nupkg.sha512",
     "/Users/huseyinpolat/.nuget/packages/system.text.encodings.web/4.5.0/system.text.encodings.web.4.5.0.nupkg.sha512"
   ],
   "logs": []

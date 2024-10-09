@@ -5,9 +5,9 @@ using SendGrid.Helpers.Errors.Model;
 
 namespace Core.Application.Exceptions;
 
-public static class ExceptionMiddleware : IMiddleware
+public class ExceptionMiddleware : IMiddleware
 {
-    public static async Task InvokeAsync(HttpContext context, RequestDelegate next)
+     public async Task InvokeAsync(HttpContext context, RequestDelegate next)
     {
         try
         {
@@ -16,11 +16,11 @@ public static class ExceptionMiddleware : IMiddleware
         catch (Exception exception)
         {
             
-            await HandleExeptionAsync(context, exception);
+            await HandleExceptionAsync(context, exception);
         }
     }
 
-    private static async Task HandleExeptionAsync(HttpContext context, Exception exception)
+    private static Task HandleExceptionAsync(HttpContext context, Exception exception)
     {
         int statusCode = GetStatusCode(context, exception);
         context.Response.StatusCode = statusCode;
@@ -28,7 +28,7 @@ public static class ExceptionMiddleware : IMiddleware
 
         if (exception.GetType() ==typeof(ValidationException)) {
             return context.Response.WriteAsync(new ExceptionModel {
-                StatusCode = statusCode,
+                StatusCode = StatusCodes.Status400BadRequest,
                 Errors = ((ValidationException)exception).Errors.Select(x => x.ErrorMessage)
             }.ToString());
         }   
@@ -39,7 +39,7 @@ public static class ExceptionMiddleware : IMiddleware
         };
 
         return context.Response.WriteAsync(new ExceptionModel {
-            StatusCode = statusCode,
+            StatusCode = StatusCodes.Status400BadRequest,
             Errors = errors
         }.ToString());
     }
