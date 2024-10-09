@@ -10,14 +10,20 @@
     <Folder Include="Base/" />
     <Folder Include="Beheviors/" />
     <Folder Include="DTOs/" />
-    <Folder Include="Exceptions/" />
     <Folder Include="Features/" />
-    <Folder Include="Interfaces/" />
-    <Folder Include="Interfaces/AutoMapper/" />
     <Folder Include="Interfaces/RedisCache/" />
-    <Folder Include="Interfaces/Repositories/" />
     <Folder Include="Interfaces/Tokens/" />
-    <Folder Include="Interfaces/UnitOfWorks/" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Core.Domain\Core.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="8.2.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.8" />
+    <PackageReference Include="SendGrid" Version="9.29.3" />
   </ItemGroup>
 
 </Project>
