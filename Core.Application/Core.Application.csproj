@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Base/" />
+    <Folder Include="Beheviors/" />
+    <Folder Include="DTOs/" />
+    <Folder Include="Exceptions/" />
+    <Folder Include="Features/" />
+    <Folder Include="Interfaces/" />
+    <Folder Include="Interfaces/AutoMapper/" />
+    <Folder Include="Interfaces/RedisCache/" />
+    <Folder Include="Interfaces/Repositories/" />
+    <Folder Include="Interfaces/Tokens/" />
+    <Folder Include="Interfaces/UnitOfWorks/" />
+  </ItemGroup>
+
+</Project>
