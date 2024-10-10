@@ -9,7 +9,6 @@
   <ItemGroup>
     <Folder Include="DTOs/" />
     <Folder Include="Features/" />
-    <Folder Include="Interfaces/RedisCache/" />
   </ItemGroup>
 
   <ItemGroup>
