@@ -27,7 +27,7 @@ public static class Registration
     }
 
 
-    // Add each rules from assembly to DI
+    // Add all rules from assembly to DI
     private static IServiceCollection AddRulesFromAssembly(this IServiceCollection services, Assembly assembly, Type baseType)
     {
         var rules = assembly.GetTypes()
