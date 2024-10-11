@@ -1,4 +1,5 @@
 using System;
+using System.Reflection;
 using Core.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,6 +9,10 @@ public class AppDbContext : DbContext
 {
     public DbSet<User> Users { get; set; }
     public DbSet<Role> Roles { get; set; }
+    public DbSet<Product> Products { get; set; }
+    public DbSet<Customer> Customers { get; set; }
+    public DbSet<Order> Orders { get; set; } 
+    public DbSet<OrderItem> OrderItems { get; set; }
         
     public AppDbContext()
     {
@@ -20,7 +25,7 @@ public class AppDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-        modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
+        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
     }
 
 }

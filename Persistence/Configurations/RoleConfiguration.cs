@@ -23,6 +23,14 @@ public class RoleConfiguration : IEntityTypeConfiguration<Role>
             .HasMaxLength(50)
             .IsRequired();
 
+        builder.Property(e => e.CreatedAt)
+            .HasColumnName("created_at")
+            .HasDefaultValueSql("now()")
+            .IsRequired();
+
+        builder.Property(e => e.ModifiedAt)
+            .HasColumnName("modified_at");
+
         builder.Property(e => e.Permissions)
             .HasConversion(
                 v => string.Join(',', v.Select(p => ((int)p).ToString())),

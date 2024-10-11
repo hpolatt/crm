@@ -42,6 +42,12 @@ internal class UserConfiguration : IEntityTypeConfiguration<User>
             .HasDefaultValueSql("now()")
             .IsRequired();
 
+        builder.Property(e => e.CustomerId)
+            .HasColumnName("customer_id");
+
+        builder.Property(e => e.ModifiedAt)
+            .HasColumnName("modified_at");
+
         builder.Property(e => e.RoleId)
             .HasColumnName("role_id")
             .IsRequired();
@@ -50,5 +56,12 @@ internal class UserConfiguration : IEntityTypeConfiguration<User>
                .WithMany(r => r.Users)
                .HasForeignKey(u => u.RoleId)
                .OnDelete(DeleteBehavior.Restrict);
+
+        // CustomerId
+        builder.HasOne(u => u.Customer)
+               .WithMany(c => c.Users)
+               .HasForeignKey(u => u.CustomerId)
+               .OnDelete(DeleteBehavior.Restrict);
+        
     }
 }
