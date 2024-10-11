@@ -1,6 +1,7 @@
 using System;
 using Core.Application.Interfaces.Repositories;
 using Core.Domain.Common;
+using Microsoft.EntityFrameworkCore;
 using Persistence.Context;
 
 namespace Persistence.Repositories;
@@ -9,27 +10,29 @@ public class WriteRepository<T> : IWriteRepository<T> where T : class, IEntityBa
 {
     private readonly AppDbContext dbContext;
 
+    private DbSet<T> Entities => dbContext.Set<T>();
+
     public WriteRepository(AppDbContext dbContext)
     {
         this.dbContext = dbContext;
     }
-    public Task Add(T entity, CancellationToken cancellationToken = default)
+    public async Task AddAsnyc(T entity, CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        await Entities.AddAsync(entity, cancellationToken);
     }
 
-    public Task AddRangeAsync(IList<T> entities, CancellationToken cancellationToken = default)
+    public async Task AddRangeAsync(IList<T> entities, CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        await Entities.AddRangeAsync(entities, cancellationToken);
     }
 
-    public Task Delete(T entity, CancellationToken cancellationToken = default)
+    public async Task Delete(T entity, CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        await Task.Run(() => Entities.Remove(entity), cancellationToken);
     }
 
-    public Task Update(T entity, CancellationToken cancellationToken = default)
+    public async Task Update(T entity, CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        await Task.Run(() => Entities.Update(entity), cancellationToken);
     }
 }
