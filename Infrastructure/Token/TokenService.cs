@@ -6,6 +6,7 @@ using System.Text;
 using Core.Application.Interfaces.Tokens;
 using Core.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
 namespace Infrastructure.Token;
@@ -15,9 +16,9 @@ public class TokenService : ITokenService
     private readonly TokenSettings tokenSettings;
     private readonly UserManager<User> userManager;
 
-    public TokenService(TokenSettings tokenSettings, UserManager<User> userManager)
+    public TokenService(IOptions<TokenSettings> tokenSettings, UserManager<User> userManager)
     {
-        this.tokenSettings = tokenSettings;
+        this.tokenSettings = tokenSettings.Value;
         this.userManager = userManager;
     }
 
