@@ -38,3 +38,4 @@ out/
 **/obj/**
 
 **/appsettings*.json
+Persistence/Migrations/**

@@ -1,4 +1,3 @@
-using System;
 using Core.Domain.Common;
 
 namespace Core.Domain.Entities;
@@ -11,5 +10,5 @@ public class Product: EntityBase, IEntityBase
     public int StockQuantity { get; set; }
     public int VAT { get; set; } = 18; // Value Added Tax
     public string SKU { get; set; }  // stock keeping unit
-    public List<OrderItem> OrderItems { get; set; } // Relationships
+    public ICollection<OrderItem> OrderItems { get; set; } // Relationships
 }

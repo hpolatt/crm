@@ -1,6 +1,3 @@
-using System;
-using System.ComponentModel.DataAnnotations.Schema;
-
 namespace Core.Domain.Common;
 
 public abstract class EntityBase : IEntityBase

@@ -6,6 +6,7 @@ using System.Text;
 using Core.Application.Interfaces.Tokens;
 using Core.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
 namespace Infrastructure.Token;
@@ -13,12 +14,10 @@ namespace Infrastructure.Token;
 public class TokenService : ITokenService
 {
     private readonly TokenSettings tokenSettings;
-    private readonly UserManager<User> userManager;
 
-    public TokenService(TokenSettings tokenSettings, UserManager<User> userManager)
+    public TokenService(IOptions<TokenSettings> tokenSettings)
     {
-        this.tokenSettings = tokenSettings;
-        this.userManager = userManager;
+        this.tokenSettings = tokenSettings.Value;
     }
 
     public async Task<JwtSecurityToken> GenerateJwtTokenAsync(User user, IList<string> roles)
@@ -43,7 +42,6 @@ public class TokenService : ITokenService
             expires: DateTime.UtcNow.AddMinutes(tokenSettings.TokenValidtyInMinutes),
             signingCredentials: new SigningCredentials(key, SecurityAlgorithms.HmacSha256));
 
-        await userManager.UpdateSecurityStampAsync(user);
         return token;
     }
 
