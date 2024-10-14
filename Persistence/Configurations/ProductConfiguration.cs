@@ -48,7 +48,7 @@ public class ProductConfiguration : IEntityTypeConfiguration<Product>
 
         builder.Property(e => e.CreatedAt)
             .HasColumnName("created_at")
-            .HasDefaultValueSql("now()")
+            .HasDefaultValueSql("GETDATE()")
             .IsRequired();
 
         builder.Property(e => e.ModifiedAt)
