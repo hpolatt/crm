@@ -32,12 +32,13 @@ public class RoleConfiguration : IEntityTypeConfiguration<Role>
             .HasColumnName("modified_at");
 
         builder.Property(e => e.Permissions)
-            .HasConversion(
-                v => string.Join(',', v.Select(p => ((int)p).ToString())),
-                v => v.Split(',', StringSplitOptions.RemoveEmptyEntries)
-                      .Select(p => (Permission)Enum.Parse(typeof(Permission), p))
-                      .ToList()
-            );
+                .HasConversion(
+                    v => string.Join(',', v.Select(p => ((int)p).ToString())),
+                    v => v.Split(',', StringSplitOptions.RemoveEmptyEntries)
+                          .Select(p => (Permission)Enum.Parse(typeof(Permission), p))
+                          .ToList()
+                )
+                .Metadata.SetValueComparer(new PermissionValueComparer());
             
         builder.HasMany(r => r.Users)
                .WithOne(u => u.Role)
