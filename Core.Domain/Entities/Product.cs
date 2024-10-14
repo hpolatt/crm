@@ -1,4 +1,3 @@
-using System;
 using Core.Domain.Common;
 
 namespace Core.Domain.Entities;

@@ -1,4 +1,3 @@
-using System;
 using Core.Domain.Common;
 using Core.Domain.Enums;
 

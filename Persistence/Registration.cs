@@ -14,10 +14,9 @@ public static class Registration
 {
     public static void AddPersistence(this IServiceCollection services, IConfiguration configuration)
     {
+       // sql server congiguration; 
         services.AddDbContext<AppDbContext>(options =>
-				  options.UseSqlServer("Data Source=localhost,1433;Initial Catalog=crmorder; TrustServerCertificate=True; User ID=sa; Password=root123!;")
-          );
-				// options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+            options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
         services.AddScoped(typeof(IReadRepository<>), typeof(ReadRepository<>));
         services.AddScoped(typeof(IWriteRepository<>), typeof(WriteRepository<>));

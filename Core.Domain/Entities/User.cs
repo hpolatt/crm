@@ -1,4 +1,3 @@
-using System;
 using Core.Domain.Common;
 
 namespace Core.Domain.Entities;
@@ -9,7 +8,7 @@ public class User: EntityBase, IEntityBase
     public string LastName { get; set; }
     public string Email { get; set; }
     public string PasswordHash { get; set; }
-    public int RoleId { get; set; }
+    public Guid RoleId { get; set; }
     public Role Role { get; set; }
     public Guid CustomerId { get; set; }
     public Customer Customer { get; set; }
