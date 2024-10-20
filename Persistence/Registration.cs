@@ -1,6 +1,7 @@
 using System;
 using Core.Application.Interfaces.Repositories;
 using Core.Application.Interfaces.UnitOfWorks;
+using Core.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -22,5 +23,16 @@ public static class Registration
         services.AddScoped(typeof(IWriteRepository<>), typeof(WriteRepository<>));
 
         services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+        services.AddIdentityCore<User>(opt => {
+				opt.Password.RequireDigit = false;
+				opt.Password.RequireLowercase = false;
+				opt.Password.RequireUppercase = false;
+				opt.Password.RequireNonAlphanumeric = false;
+				opt.Password.RequiredLength = 6;
+				opt.SignIn.RequireConfirmedEmail = false;
+			})
+					.AddRoles<Role>()
+					.AddEntityFrameworkStores<AppDbContext>();
     }
 }

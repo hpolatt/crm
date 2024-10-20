@@ -16,14 +16,14 @@ public static class Registration
     {
         var assembly = Assembly.GetExecutingAssembly();
         services.AddTransient<ExceptionMiddleware>();
+        services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(assembly));
+
         services.AddRulesFromAssembly(assembly, typeof(BaseRule));
         services.AddValidatorsFromAssembly(assembly);
         ValidatorOptions.Global.LanguageManager.Culture= new CultureInfo("en-US");
 
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(FluentValidationBehevior<,>));
-        
-
-
+        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RedisCacheBehevior<,>));
     }
 
 

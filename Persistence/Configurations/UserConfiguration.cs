@@ -1,5 +1,6 @@
 using System;
 using Core.Domain.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -10,12 +11,6 @@ internal class UserConfiguration : IEntityTypeConfiguration<User>
     public void Configure(EntityTypeBuilder<User> builder)
     {
         builder.ToTable("users");
-
-        builder.HasKey(e => e.Id);
-
-        builder.Property(e => e.Id)
-            .HasColumnName("id")
-            .ValueGeneratedOnAdd();
 
         builder.Property(e => e.FirstName)
             .HasColumnName("first_name")
@@ -32,11 +27,6 @@ internal class UserConfiguration : IEntityTypeConfiguration<User>
             .HasMaxLength(100)
             .IsRequired();
 
-        builder.Property(e => e.PasswordHash)
-            .HasColumnName("password_hash")
-            .HasMaxLength(100)
-            .IsRequired();
-
         builder.Property(e => e.CreatedAt)
             .HasColumnName("created_at")
             .HasDefaultValueSql("GETDATE()")
@@ -48,20 +38,20 @@ internal class UserConfiguration : IEntityTypeConfiguration<User>
         builder.Property(e => e.ModifiedAt)
             .HasColumnName("modified_at");
 
-        builder.Property(e => e.RoleId)
-            .HasColumnName("role_id")
-            .IsRequired();
-        
-        builder.HasOne(u => u.Role)
-               .WithMany(r => r.Users)
-               .HasForeignKey(u => u.RoleId)
-               .OnDelete(DeleteBehavior.Restrict);
+        builder.Property(e => e.IsDeleted)
+            .HasColumnName("is_deleted")
+            .HasDefaultValue(false);
 
         // CustomerId
         builder.HasOne(u => u.Customer)
                .WithMany(c => c.Users)
                .HasForeignKey(u => u.CustomerId)
                .OnDelete(DeleteBehavior.Restrict);
-        
+
+
+        builder.HasMany(e => e.UserRoles)  
+                .WithOne(e => e.User)  
+                .HasForeignKey(ur => ur.UserId)  
+                .IsRequired();                 
     }
 }

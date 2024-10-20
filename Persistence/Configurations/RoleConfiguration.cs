@@ -12,12 +12,6 @@ public class RoleConfiguration : IEntityTypeConfiguration<Role>
     {
         builder.ToTable("roles");
 
-        builder.HasKey(e => e.Id);
-
-        builder.Property(e => e.Id)
-            .HasColumnName("id")
-            .ValueGeneratedOnAdd();
-
         builder.Property(e => e.Name)
             .HasColumnName("name")
             .HasMaxLength(50)
@@ -31,6 +25,9 @@ public class RoleConfiguration : IEntityTypeConfiguration<Role>
         builder.Property(e => e.ModifiedAt)
             .HasColumnName("modified_at");
 
+        builder.Property(e => e.IsDeleted)
+            .HasColumnName("is_deleted");
+
         builder.Property(e => e.Permissions)
                 .HasConversion(
                     v => string.Join(',', v.Select(p => ((int)p).ToString())),
@@ -39,11 +36,11 @@ public class RoleConfiguration : IEntityTypeConfiguration<Role>
                           .ToList()
                 )
                 .Metadata.SetValueComparer(new PermissionValueComparer());
-            
-        builder.HasMany(r => r.Users)
-               .WithOne(u => u.Role)
-               .HasForeignKey(u => u.RoleId)
-               .OnDelete(DeleteBehavior.Restrict);
+
+        builder.HasMany(e => e.UserRoles)
+                .WithOne(e => e.Role)
+                .HasForeignKey(ur => ur.UserId)
+                .IsRequired();
 
     }
 }
