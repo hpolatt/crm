@@ -9,8 +9,6 @@ namespace Persistence.Context;
 
 public class AppDbContext : IdentityDbContext<User, Role, Guid, UserClaim, UserRoles, UserLogin, RoleClaim, UserToken>
 {
-    public DbSet<User> Users { get; set; }
-    public DbSet<Role> Roles { get; set; }
     public DbSet<Product> Products { get; set; }
     public DbSet<Customer> Customers { get; set; }
     public DbSet<Order> Orders { get; set; }

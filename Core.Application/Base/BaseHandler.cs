@@ -11,7 +11,7 @@ public class BaseHandler
   protected readonly IMapper mapper;
     protected readonly IUnitOfWork unitOfWork;
     protected readonly IHttpContextAccessor httpContextAccessor;
-    protected readonly string userId;
+    protected readonly string? userId;
     public BaseHandler(IMapper mapper, IUnitOfWork unitOfWork, IHttpContextAccessor httpContextAccessor)
     {
         this.mapper = mapper;

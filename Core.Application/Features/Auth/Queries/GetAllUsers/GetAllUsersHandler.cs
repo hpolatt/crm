@@ -33,7 +33,7 @@ public class GetAllUsersHandler : BaseHandler, IRequestHandler<GetAllUsersReques
                 Email = x.Email,
                 FirstName = x.FirstName,
                 LastName = x.LastName,
-                PhoneNumber = x.PhoneNumber,
+                PhoneNumber = x.PhoneNumber!,
                 CustomerName = x.Customer?.Name,
                 RoleName = x.UserRoles.Select(x => x.Role.Name).FirstOrDefault(),
                 Permissions = x.UserRoles.Select(x => x.Role.Permissions).FirstOrDefault()

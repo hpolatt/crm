@@ -10,7 +10,7 @@ public class GetAllUsersResponse
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public string PhoneNumber { get; set; }
-    public string CustomerName { get; set; }
-    public string RoleName { get; set; }
-    public List<Permission> Permissions { get; set; }
+    public string? CustomerName { get; set; }
+    public string? RoleName { get; set; }
+    public List<Permission>? Permissions { get; set; }
 }

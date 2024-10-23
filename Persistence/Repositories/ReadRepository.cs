@@ -59,6 +59,6 @@ public class ReadRepository<T> : IReadRepository<T> where T : class, IEntityBase
         IQueryable<T> queryAble = Entities;
         if(!enableTracking) queryAble.AsNoTracking();
         if(include is not null) include(queryAble);
-        return queryAble.FirstOrDefaultAsync(predicate);
+        return queryAble.FirstOrDefaultAsync(predicate)!;
     }
 }
