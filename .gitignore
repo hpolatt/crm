@@ -39,3 +39,5 @@ out/
 
 **/appsettings*.json
 Persistence/Migrations/**
+Presentation.Api/host.json
+Presentation.Api/local.settings.json
